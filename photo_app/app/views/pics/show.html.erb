@@ -1,0 +1,9 @@
+<%= image_tag @pic.image.url (:medium)%>
+
+<p>
+  <strong>Title:</strong>
+  <%= @pic.title %>
+</p>
+
+<%= link_to 'Edit', edit_pic_path(@pic) %> |
+<%= link_to 'Back', pics_path %>
