@@ -22,10 +22,10 @@ app.use(routes);
 
 
 /*********************** VIEWS ******************************/
-app.use(express.static(__dirname + '/public'));
-app.set('views', '/views');
+app.use(express.static(__dirname + '/www'));
+// app.set('views', '/views');
 app.all('/*', function(req, res) { // one page app -- angular appends to index.html using ui-view
-   res.sendFile(__dirname + '/public/views/index.html');
+   res.sendFile(__dirname + '/www/index.html');
 });
 
 // listen on port 5000

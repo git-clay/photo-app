@@ -40,19 +40,18 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
-      <div ng-controller="CameraCtrl as cc">
+
+
+      <ion-content>
+            <div ng-controller="CameraCtrl as cc">
   <div class="list card">
     <div class="item item-image">
-  <img ng-src="{{cc.pictureUrl}}">
+  <img ng-src="{{pictureUrl}}">
       
     </div>
   </div>
-  <div>
     <button ng-click="takePicture()" class="button button-block button-calm">Take Picture</button>
   </div>
-</div>
-
-      <ion-content>
       </ion-content>
     </ion-pane>
   </body>

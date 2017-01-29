@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "photo_ionic: An Ionic project",
   "dependencies": {
+    "cordova-plugin-camera": "^2.3.1",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",

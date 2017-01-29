@@ -11,7 +11,7 @@ stateProvider
   url:"/landmark",
   views:{
     'menuContent':{
-      templateUrl: "templates/landmark.html",
+      templateUrl: "../templates/landmark.html",
       controller: 'LandmarkCtrl'
     }
   }
