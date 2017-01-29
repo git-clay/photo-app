@@ -11,7 +11,7 @@ var express = require('express'),
 router.get('/api/detect', detectController.getApi);
 
 //landmark
-router.get('/api/landmark', landmarkController.getApi)
+router.get('/api/landmark', landmarkController.getLandmark)
 // // create
 
 // router.post('/api/detect', detectController.create);

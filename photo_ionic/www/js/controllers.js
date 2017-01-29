@@ -1,9 +1,23 @@
 angular.module('photoApp', ['ionic','ngCordova'])
+	.controller('DetectCtrl', DetectCtrl)
 	.controller('LandmarkCtrl', LandmarkCtrl)
 	.controller('CameraCtrl', CameraCtrl)
 
-LandmarkCtrl.$inject = ['$scope','Landmark']
-function LandmarkCtrl(scope,Landmark){
+DetectCtrl.$inject = ['$scope','$http']
+function DetectCtrl($scope,$http){
+	console.log('DetectCtrl')
+
+$scope.getApi=function(){
+
+	return $http.get('/api/detect')
+	.then(function(res){
+		console.log(res)
+	})
+}
+}
+
+LandmarkCtrl.$inject = ['$scope','$http']
+function LandmarkCtrl($scope,$http){
 	console.log('LandmarkCtrl')
 	$scope.landmark = Landmark.get();
 }
