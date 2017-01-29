@@ -3,8 +3,28 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('photoApp', ['ionic','ngCordova','ui.router', 'satellizer'])
+.config(function($stateProvider, $urlRouterProvider){
 
+stateProvider
+.state('app.landmarks',{
+  url:"/landmark",
+  views:{
+    'menuContent':{
+      templateUrl: "templates/landmark.html",
+      controller: 'LandmarkCtrl'
+    }
+  }
+})
+    $urlRouterProvider.otherwise('/');
+})
+.factory('Landmark', function($resource){
+    return $resource('http://localhost:5000/api/landmark')
+  })
+
+// .config(['$ionicConfigProvider', function($ionicConfigProvider) {
+//     $ionicConfigProvider.tabs.position('bottom');
+// }])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -22,3 +42,6 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+
+

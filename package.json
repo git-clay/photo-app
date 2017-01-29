@@ -11,18 +11,23 @@
     "type": "git",
     "url": "git+https://github.com/git-clay/photo-app.git"
   },
-  "dependencies":{
+  "dependencies": {
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
-    "express": "^4.14.0",
+    "express": "^4.14.1",
+    "gulp": "^3.9.1",
+    "method-override": "^2.0.2",    
     "pg": "6.1.2",
     "pg-hstore": "^2.3.2",
     "pgtools": "^0.2.3",
     "request": "^2.79.0",
     "sequelize": "^3.29.0",
-    "sequelize-init": "0.0.3"
-  }
-  "author": "",
+    "sequelize-init": "0.0.3",
+    "sessions": "0.0.2-7",
+    "uglify": "^0.1.5",
+    "unirest": "^0.5.1"
+  },
+  "author": "Clay Smith",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/git-clay/photo-app/issues"
