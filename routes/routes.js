@@ -1,4 +1,5 @@
 var express = require('express'),
+    app = express(),
     router = express.Router(),
     detectController = require('../controllers/detect.js'),
     landmarkController = require('../controllers/landmark.js');
@@ -12,6 +13,7 @@ router.get('/api/detect', detectController.getApi);
 //landmark
 router.get('/api/landmark', landmarkController.getApi)
 // // create
+
 // router.post('/api/detect', detectController.create);
 
 // // show

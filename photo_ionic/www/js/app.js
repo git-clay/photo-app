@@ -7,14 +7,10 @@ angular.module('photoApp', ['ionic','ngCordova','ui.router', 'satellizer'])
 .config(function($stateProvider, $urlRouterProvider){
 
 stateProvider
-.state('app.landmarks',{
+.state('landmark',{
   url:"/landmark",
-  views:{
-    'menuContent':{
       templateUrl: "../templates/landmark.html",
       controller: 'LandmarkCtrl'
-    }
-  }
 })
     $urlRouterProvider.otherwise('/');
 })
