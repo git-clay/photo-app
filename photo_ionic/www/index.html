@@ -41,19 +41,16 @@
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
 
-    <ion-nav-view class='view-container'>
+    <ion-nav-view class="view-container">
     </ion-nav-view>
       <ion-content>
-            <div ng-controller="CameraCtrl as cc">
-  <div class="list card">
-    <div class="item item-image">
-  <img ng-src="{{pictureUrl}}">
-      
-    </div>
-  </div>
+    <div ng-controller="CameraCtrl">
+
+    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
     <button ng-click="takePicture()" class="button button-block button-calm">Take Picture</button>
   </div>
-  <div ng-controller='DetectCtrl'>
+  <div ng-controller="DetectCtrl">
         <button ng-click="getApi()" class="button button-block button-calm">get detect api info</button>
   </div>
       </ion-content>
