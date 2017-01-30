@@ -1,7 +1,8 @@
-var express		= require('express'),
-	bodyParser	= require('body-parser'),
-	app			= express(),
-	db			= require('./db/models');
+var express			= require('express'),
+	bodyParser		= require('body-parser'),
+	app				= express(),
+	db				= require('./db/models'),
+	methodOverride 	= require('method-override');
 	
 require('dotenv').load();
 // console.log(process.env)
@@ -9,6 +10,7 @@ require('dotenv').load();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(methodOverride('X-HTTP-Method-Override'))
 // app.use(express.static('public'));
 
 

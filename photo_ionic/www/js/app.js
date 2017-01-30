@@ -14,9 +14,9 @@ stateProvider
 })
     $urlRouterProvider.otherwise('/');
 })
-.factory('Landmark', function($resource){
-    return $resource('http://localhost:5000/api/landmark')
-  })
+// .factory('Landmark', function($resource){
+//     return $resource('http://localhost:5000/api/landmark')
+//   })
 
 // .config(['$ionicConfigProvider', function($ionicConfigProvider) {
 //     $ionicConfigProvider.tabs.position('bottom');

@@ -7,10 +7,11 @@ DetectCtrl.$inject = ['$scope','$http']
 function DetectCtrl($scope,$http){
 	console.log('DetectCtrl')
 
-$scope.getApi=function(){
+$scope.getApi=function(imgURI){
 
-	return $http.get('/api/detect')
+	return $http.get('http://localhost:5000/api/detect',imgURI)
 	.then(function(res){
+
 		console.log(res)
 	})
 }
@@ -43,6 +44,8 @@ console.log($cordovaCamera)
  
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            // DetectCtrl.getApi($scope.imgURI)
+            console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
         }, function(err) {
 			console.log(err)
