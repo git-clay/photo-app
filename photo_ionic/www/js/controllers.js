@@ -45,9 +45,11 @@ CameraCtrl.$inject = ['$scope','$cordovaCamera']
 
 function CameraCtrl($scope,$cordovaCamera){
 console.log($cordovaCamera)
+console.log(ionic.Platform.platform()) //checks if web or mobile
   document.addEventListener("deviceready", function () {
 
  $scope.takePicture = function() {
+
         var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
@@ -59,10 +61,10 @@ console.log($cordovaCamera)
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false
         };
- 
+
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            // DetectCtrl.getApi($scope.imgURI)
+            DetectCtrl.getApi(imageData)
             console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
         }, function(err) {
