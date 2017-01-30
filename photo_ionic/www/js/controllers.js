@@ -3,24 +3,42 @@ angular.module('photoApp', ['ionic','ngCordova'])
 	.controller('LandmarkCtrl', LandmarkCtrl)
 	.controller('CameraCtrl', CameraCtrl)
 
+var face_id,
+	attributes,
+	position,
+	landmarks;
+
 DetectCtrl.$inject = ['$scope','$http']
 function DetectCtrl($scope,$http){
-	console.log('DetectCtrl')
-
 $scope.getApi=function(imgURI){
 
 	return $http.get('http://localhost:5000/api/detect',imgURI)
 	.then(function(res){
-
-		console.log(res)
+		var info = res.data.face[0]
+		face_id= info.face_id //used for landmark
+		attributes=info.attribute //(age,gender,glass,pose,race,smiling)
+		position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+		console.log(face_id,attributes,position)
 	})
 }
 }
 
 LandmarkCtrl.$inject = ['$scope','$http']
 function LandmarkCtrl($scope,$http){
-	console.log('LandmarkCtrl')
-	$scope.landmark = Landmark.get();
+	$scope.getApi = function(imgURI){
+	return $http.get('http://localhost:5000/api/landmark',imgURI)
+	.then(function(res){
+		// var info = res.data.face[0]
+		// face_id= info.face_id //used for landmark
+		// attributes=info.attribute //(age,gender,glass,pose,race,smiling)
+		// position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+		var info = res.data.result[0]
+		face_id = info.face_id
+		landmarks = info.landmark //all
+		var landmarkArr =[]
+		console.log(landmarks) //83 items
+	})
+	}
 }
 
 CameraCtrl.$inject = ['$scope','$cordovaCamera']

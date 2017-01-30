@@ -11,7 +11,8 @@ unirest.get(base_url+face_id)
 .header("Accept", "application/json")
 .end(function (result) {
   console.log(result.status, result.headers, result.body);
-    res.send(result)
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(result.body)
 });
 }
 
