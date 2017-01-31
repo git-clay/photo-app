@@ -74,6 +74,7 @@ function CameraCtrl($scope,$cordovaCamera,$ionicPlatform,$cordovaDevice){
 console.log($cordovaCamera)
 console.log(ionic.Platform.platform()) //checks if web or mobile
 // window.onload=function(){
+	window.onload = function(){
 	$ionicPlatform.ready(function(){
         $scope.$apply(function() {
 
@@ -100,7 +101,7 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
     }
     })
     })
-	    // }
+	    }
 }
 
 
