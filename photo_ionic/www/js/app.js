@@ -48,7 +48,7 @@ $stateProvider
   }
 })
 .state('app.camera',{
-  url:'/camera',
+  url:'/',
     views:{
     'menuContent':{
   templateUrl:'../templates/camera.html',
@@ -65,7 +65,7 @@ $stateProvider
     }
   }
 })
-    $urlRouterProvider.otherwise('/app/camera');
+    $urlRouterProvider.otherwise('/');
 })
 // .factory('Landmark', function($resource){
 //     return $resource('http://localhost:5000/api/landmark')
