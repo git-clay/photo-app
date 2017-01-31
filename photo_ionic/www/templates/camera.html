@@ -1,11 +1,20 @@
-<div ng-controller='CameraCtrl as cc'>
-	<div class="list card">
-		<div class="item item-image">
-	<img ng-src="{{pictureUrl}}">
-			
-		</div>
-	</div>
-	<div>
-		<button ng-click='takePicture' class='button button-block button-calm'>Take Picture</button>
-	</div>
-</div>
+<ion-view view-title="Say Cheese">
+    <ion-content>
+        <h3 class="text-center">Take a Picture</h3>
+ 
+        <br/>
+        <br/>
+    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+    <button ng-click="takePicture()" class="button button-block button-calm">Take Picture</button>
+  </div>
+  <div ng-controller="DetectCtrl">
+        <button ng-click="getApi()" class="button button-block button-calm">get detect api info</button>
+  </div>
+    <div ng-controller="LandmarkCtrl">
+        <button ng-click="getApi()" class="button button-block button-calm">get landmark api info</button>
+  </div>
+ 
+        <img class="padding" ng-src="{{imgSrc}}">
+    </ion-content>
+</ion-view>

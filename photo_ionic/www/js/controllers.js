@@ -1,18 +1,44 @@
-angular.module('photoApp', ['ionic','ngCordova'])
+angular.module('photoApp.controllers', [])
 	.controller('DetectCtrl', DetectCtrl)
 	.controller('LandmarkCtrl', LandmarkCtrl)
 	.controller('CameraCtrl', CameraCtrl)
+	.controller('DeviceCtrl', DeviceCtrl)
+	.controller('MenuCtrl', MenuCtrl)
 
 var face_id,
 	attributes,
 	position,
 	landmarks;
 
-DetectCtrl.$inject = ['$scope','$http']
-function DetectCtrl($scope,$http){
+MenuCtrl.$inject=[]
+function MenuCtrl(){
+
+}
+console.log('controllers')
+DeviceCtrl.$inject = ['$scope','$cordovaDevice','$ionicPlatform','$timeout']
+function DeviceCtrl($scope,$cordovaDevice,$ionicPlatform,$timeout){
+            // sometimes binding does not work! :/
+
+        $scope.$apply(function() {
+
+
+       // getting device infor from $cordovaDevice
+            var device = $cordovaDevice.getDevice();
+ 
+            $scope.manufacturer = device.manufacturer;
+            $scope.model = device.model;
+            $scope.platform = device.platform;
+            $scope.uuid = device.uuid;
+     })
+ 
+    }
+
+DetectCtrl.$inject = ['$scope','$http','$ionicPlatform']
+function DetectCtrl($scope,$http,$ionicPlatform){
+	$ionicPlatform.ready(function(){
 $scope.getApi=function(imgURI){
 
-	return $http.get('http://localhost:5000/api/detect',imgURI)
+	return $http.get('https://shrouded-chamber-14617.herokuapp.com/api/detect',imgURI)
 	.then(function(res){
 		var info = res.data.face[0]
 		face_id= info.face_id //used for landmark
@@ -21,12 +47,13 @@ $scope.getApi=function(imgURI){
 		console.log(face_id,attributes,position)
 	})
 }
+})
 }
 
 LandmarkCtrl.$inject = ['$scope','$http']
 function LandmarkCtrl($scope,$http){
 	$scope.getApi = function(imgURI){
-	return $http.get('http://localhost:5000/api/landmark',imgURI)
+	return $http.get('hhttps://shrouded-chamber-14617.herokuapp.com/landmark',imgURI)
 	.then(function(res){
 		// var info = res.data.face[0]
 		// face_id= info.face_id //used for landmark
@@ -41,16 +68,16 @@ function LandmarkCtrl($scope,$http){
 	}
 }
 
-CameraCtrl.$inject = ['$scope','$cordovaCamera']
+CameraCtrl.$inject = ['$scope','$cordovaCamera','$ionicPlatform','$cordovaDevice']
 
-function CameraCtrl($scope,$cordovaCamera){
+function CameraCtrl($scope,$cordovaCamera,$ionicPlatform,$cordovaDevice){
 console.log($cordovaCamera)
 console.log(ionic.Platform.platform()) //checks if web or mobile
-  document.addEventListener("deviceready", function () {
+// window.onload=function(){
+	$ionicPlatform.ready(function(){
+        $scope.$apply(function() {
 
- $scope.takePicture = function() {
-
-        var options = { 
+     var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
             sourceType : Camera.PictureSourceType.CAMERA, 
@@ -61,7 +88,7 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false
         };
-
+ $scope.takePicture = function() {
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
             DetectCtrl.getApi(imageData)
@@ -72,9 +99,21 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
 	    });
     }
     })
-
+    })
+	    // }
 }
 
 
-
+        // $scope.$apply(function() {
+        //     // sometimes binding does not work! :/
+ 
+        //     // getting device infor from $cordovaDevice
+        //     var device = $cordovaDevice.getDevice();
+ 
+        //     $scope.manufacturer = device.manufacturer;
+        //     $scope.model = device.model;
+        //     $scope.platform = device.platform;
+        //     $scope.uuid = device.uuid;
+ 
+        // });
 
