@@ -71,12 +71,12 @@ function LandmarkCtrl($scope,$http,$ionicPlatform,$location){
 	})
 }
 
-CameraCtrl.$inject = ['$scope','$cordovaCamera','$ionicPlatform','$cordovaDevice']
+CameraCtrl.$inject = ['$scope','$cordovaCamera','$ionicPlatform','$cordovaDevice','$http']
 
-function CameraCtrl($scope,$cordovaCamera,$ionicPlatform,$cordovaDevice){
+function CameraCtrl($scope,$cordovaCamera,$ionicPlatform,$cordovaDevice,$http){
 console.log($cordovaCamera)
 console.log(ionic.Platform.platform()) //checks if web or mobile
-	// window.onload = function(){
+	window.onload = function(){
 	$ionicPlatform.ready(function(){
         $scope.$apply(function() {
 
@@ -94,15 +94,29 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
  $scope.takePicture = function() {
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            DetectCtrl.getApi(imageData)
+            $scope.rawdata = imageData
             console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
+    return $http.get('https://shrouded-chamber-14617.herokuapp.com/api/detect',$scope.imgURI)
+	.then(function(res){
+		var info = res.data.face[0]
+		var face_id= info.face_id //used for landmark
+		var attributes=info.attribute //(age,gender,glass,pose,race,smiling)
+		var position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+		console.log(face_id,attributes,position)
+	})
         }, function(err) {
 			console.log(err)
 	    });
     }
     })
     })
-	    // }
+	    }
 }
+
+
+
+
+
+
 

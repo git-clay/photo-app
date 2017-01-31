@@ -1,11 +1,12 @@
 <ion-view view-title="Say Cheese">
     <ion-content>
         <h3 class="text-center">Take a Picture</h3>
- 
+    
         <br/>
         <br/>
     <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
     <img ng-show="imgURI === undefined" ng-src="https://placehold.it/300x300">
+    {{rawdata}}
     <button ng-click="takePicture()" class="button button-block button-calm">Take Picture</button>
   </div>
   <div ng-controller="DetectCtrl">

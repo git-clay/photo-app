@@ -23,10 +23,10 @@ app.use(routes);
 
 
 /*********************** VIEWS ******************************/
-app.use(express.static(__dirname + 'www'));
+app.use(express.static(__dirname + '/photo_ionic/www'));
 // app.set('views', '/views');
 app.all('/*', function(req, res) { // one page app -- angular appends to index.html using ui-view
-   res.sendFile(__dirname + '/www/index.html');
+   res.sendFile(__dirname + '/photo_ionic/www/index.html');
 });
 // app.get('/landmark', function(req,res){
 //   res.sendFile(__dirname+'/photo_ionic/www/templates/landmark.html')
