@@ -97,7 +97,14 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
             rawdata = imageData
             console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
-    return $http.post('https://shrouded-chamber-14617.herokuapp.com/api/detect','thisIsTheInfo')
+
+    return $http({
+    	method: 'POST',
+    	url: 'https://shrouded-chamber-14617.herokuapp.com/api/detect',
+    	data: Object.toparams(rawdata),
+    	headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+    }) 
+
 	.then(function(res){
 		var info = res.data.face[0]
 		var face_id= info.face_id //used for landmark
