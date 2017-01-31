@@ -33,8 +33,8 @@ function DeviceCtrl($scope,$cordovaDevice,$ionicPlatform,$timeout){
  
     }
 
-DetectCtrl.$inject = ['$scope','$http','$ionicPlatform']
-function DetectCtrl($scope,$http,$ionicPlatform){
+DetectCtrl.$inject = ['$scope','$http','$ionicPlatform','$location']
+function DetectCtrl($scope,$http,$ionicPlatform,$location){
 	$ionicPlatform.ready(function(){
 $scope.getApi=function(imgURI){
 
@@ -50,10 +50,12 @@ $scope.getApi=function(imgURI){
 })
 }
 
-LandmarkCtrl.$inject = ['$scope','$http']
-function LandmarkCtrl($scope,$http){
+LandmarkCtrl.$inject = ['$scope','$http','$ionicPlatform','$location']
+function LandmarkCtrl($scope,$http,$ionicPlatform,$location){
+        $ionicPlatform.ready(function(){
+
 	$scope.getApi = function(imgURI){
-	return $http.get('hhttps://shrouded-chamber-14617.herokuapp.com/landmark',imgURI)
+	return $http.get('https://shrouded-chamber-14617.herokuapp.com/api/landmark',imgURI)
 	.then(function(res){
 		// var info = res.data.face[0]
 		// face_id= info.face_id //used for landmark
@@ -65,7 +67,8 @@ function LandmarkCtrl($scope,$http){
 		var landmarkArr =[]
 		console.log(landmarks) //83 items
 	})
-	}
+}
+	})
 }
 
 CameraCtrl.$inject = ['$scope','$cordovaCamera','$ionicPlatform','$cordovaDevice']
@@ -73,8 +76,7 @@ CameraCtrl.$inject = ['$scope','$cordovaCamera','$ionicPlatform','$cordovaDevice
 function CameraCtrl($scope,$cordovaCamera,$ionicPlatform,$cordovaDevice){
 console.log($cordovaCamera)
 console.log(ionic.Platform.platform()) //checks if web or mobile
-// window.onload=function(){
-	window.onload = function(){
+	// window.onload = function(){
 	$ionicPlatform.ready(function(){
         $scope.$apply(function() {
 
@@ -101,20 +103,6 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
     }
     })
     })
-	    }
+	    // }
 }
-
-
-        // $scope.$apply(function() {
-        //     // sometimes binding does not work! :/
- 
-        //     // getting device infor from $cordovaDevice
-        //     var device = $cordovaDevice.getDevice();
- 
-        //     $scope.manufacturer = device.manufacturer;
-        //     $scope.model = device.model;
-        //     $scope.platform = device.platform;
-        //     $scope.uuid = device.uuid;
- 
-        // });
 

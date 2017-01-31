@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('photoApp', ['ionic','photoApp.controllers','ngCordova'])
+angular.module('photoApp', ['ionic','photoApp.controllers','ngCordova','ui.router'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -33,7 +33,7 @@ $stateProvider
 //   url:'/',
 //   views:{
 //     'menuContent':{
-//         templateUrl:'../templates/home.html',
+//         templateUrl:'../index.html',
 //         controller: 'HomeCtrl'
 //     }
 //   }
@@ -48,7 +48,7 @@ $stateProvider
   }
 })
 .state('app.camera',{
-  url:'/',
+  url:'/camera',
     views:{
     'menuContent':{
   templateUrl:'../templates/camera.html',
@@ -65,7 +65,7 @@ $stateProvider
     }
   }
 })
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/app/camera');
 })
 // .factory('Landmark', function($resource){
 //     return $resource('http://localhost:5000/api/landmark')
