@@ -94,10 +94,10 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
  $scope.takePicture = function() {
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.rawdata = imageData
+            rawdata = imageData
             console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
-    return $http.get('https://shrouded-chamber-14617.herokuapp.com/api/detect',$scope.imgURI)
+    return $http.post('https://shrouded-chamber-14617.herokuapp.com/api/detect','thisIsTheInfo')
 	.then(function(res){
 		var info = res.data.face[0]
 		var face_id= info.face_id //used for landmark

@@ -9,7 +9,7 @@ var express = require('express'),
 
 //detect
 router.get('/api/detect', detectController.getApi);
-
+router.post('/api/detect', detectController.postApi);
 //landmark
 router.get('/api/landmark', landmarkController.getLandmark)
 // // create
