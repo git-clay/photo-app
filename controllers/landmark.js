@@ -16,7 +16,7 @@ unirest.get(base_url+"glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url="+file_im
 	.end(function (result) {
 	  console.log(result.status, result.headers, result.body);
 	    res.header("Access-Control-Allow-Origin", "*");
-	    res.send(result.body)
+	    res.send(result.body) // need to package result from first unirest call
 	});
 	  console.log(result.body)
 	  // var faceId=result.body;

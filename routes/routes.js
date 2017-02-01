@@ -2,7 +2,8 @@ var express = require('express'),
     app = express(),
     router = express.Router(),
     detectController = require('../controllers/detect.js'),
-    landmarkController = require('../controllers/landmark.js');
+    landmarkController = require('../controllers/landmark.js'),
+    imgurController = require('../controllers/imgur.js');
 
 
 //api Routes
@@ -14,7 +15,7 @@ router.post('/api/detect', detectController.postApi);
 router.get('/api/landmark', landmarkController.getLandmark)
 router.post('/api/landmark', landmarkController.getApi)
 // // create
-
+router.post('/api/imgur', imgurController.getApi)
 // router.post('/api/detect', detectController.create);
 
 // // show
