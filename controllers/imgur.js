@@ -6,12 +6,12 @@ imgDataSend ='bsWyr4EqlexpJnXHQdx0VcdeSxAI0hjtf04tFY4/gYlrDECkdKi6kUs4/j wBlOvcN
 
 console.log('imgur')
 function getApi(req,res){
-	console.log(req)
+	console.log(req.body)
 var options ={
 	type: 'POST',
 	headers:{'Authorization': 'Client-ID '+ClientID},
 	url: base_url,
-	data: {'image': imgDataSend}
+	data: {'image': req.body}
 }
 function callback(error, response, body) {
   if (!error && response.statusCode == 200) {
