@@ -7,6 +7,7 @@ request = require('request')
 console.log('imgur')
 function getApi(req,res){
 	console.log('.info:',req.body, typeof req.body)
+	var imageData = req.body.toString()
 var options ={
 	method: 'POST',
 	headers:{
@@ -14,7 +15,7 @@ var options ={
 		'Authorization': 'Client-ID '+ClientID
 	},
 	url: base_url,
-	form: {image: req.body.info}
+	form: {image: imageData}
 }
 function callback(error, response, body) {
 	console.log('in callback')
