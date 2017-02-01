@@ -8,7 +8,7 @@ console.log('imgur')
 function getApi(req,res){
 	var imageData = req.body
 	var newImageData =JSON.parse(imageData)
-	console.log('.info:',imageData, typeof imageData)
+	console.log('.info:',imageData, typeof imageData, newImageData)
 
 var options ={
 	method: 'POST',
