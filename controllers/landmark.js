@@ -20,7 +20,7 @@ unirest.get(base_url+"glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url="+file_im
 }
 
 
-function getLandmark(face_id){
+function getLandmark(face_id,res){
 unirest.get(base_url+face_id)
 .header("X-Mashape-Key", mashapeKey)
 .header("Accept", "application/json")
