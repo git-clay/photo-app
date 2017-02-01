@@ -12,6 +12,7 @@ router.get('/api/detect', detectController.getApi);
 router.post('/api/detect', detectController.postApi);
 //landmark
 router.get('/api/landmark', landmarkController.getLandmark)
+router.post('/api/landmark', landmarkController.getApi)
 // // create
 
 // router.post('/api/detect', detectController.create);

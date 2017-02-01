@@ -56,18 +56,21 @@ function LandmarkCtrl($scope,$http,$ionicPlatform,$location){
         $ionicPlatform.ready(function(){
 
 	$scope.getApi = function(imgURI){
-	return $http.get('https://shrouded-chamber-14617.herokuapp.com/api/landmark',imgURI)
+    return $http({
+    		method:'POST',
+    		url: 'https://shrouded-chamber-14617.herokuapp.com/api/landmark'
+    	})
 	.then(function(res){
-		// var info = res.data.face[0]
-		// face_id= info.face_id //used for landmark
+		var info = res.data.face[0]
+		face_id= info.face_id //used for landmark
 		attributes=info.attribute //(age,gender,glass,pose,race,smiling)
-		// position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
-		var info = res.data.result[0]
-		face_id = info.face_id
-		landmarks = info.landmark //all 83 items
-		console.log(face_id,attributes,landmarks) 
+		position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+		console.log(face_id,attributes,position)
 	})
-}
+        }, function(err) {
+			console.log(err)
+	    };
+
 	})
 }
 
@@ -153,7 +156,7 @@ function CanvasCtrl($scope) {
             }
         }
         
-        context.clearRect(0,0,600,400);
+        context.clearRect(0,0,400,400);
         draw($scope.data);
         console.log($scope.data);
     }
