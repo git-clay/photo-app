@@ -6,7 +6,8 @@ request = require('request')
 
 console.log('imgur')
 function getApi(req,res){
-	var imageData = req.body.toString()
+	var imageData = req.body
+	imageData.toString()
 	console.log('.info:',imageData, typeof imageData)
 
 var options ={
