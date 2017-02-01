@@ -10,11 +10,16 @@ unirest.get(base_url+"glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url="+file_im
 .header("X-Mashape-Key", mashapeKey)
 .header("Accept", "application/json")
 .end(function (result) {
-  console.log(result.status, result.headers, result.body);
-  res.header("Access-Control-Allow-Origin", "*");
-  console.log(result.body)
-  // var faceId=result.body;
-  getLandmark()
+	unirest.get(base_url+face_id)
+	.header("X-Mashape-Key", mashapeKey)
+	.header("Accept", "application/json")
+	.end(function (result) {
+	  console.log(result.status, result.headers, result.body);
+	    res.header("Access-Control-Allow-Origin", "*");
+	    res.send(result.body)
+	});
+	  console.log(result.body)
+	  // var faceId=result.body;
 });
 
 }
