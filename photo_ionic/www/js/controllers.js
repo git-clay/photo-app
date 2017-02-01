@@ -151,7 +151,7 @@ function Cam2($scope, $cordovaCamera, $ionicPlatform, $cordovaDevice, $http,$ion
 				$scope.takePicture = function () {
 					$cordovaCamera.getPicture(options).then(function (imageData) {
 						// console.log('click')
-						rawdata = imageData
+						rawdata = {info:imageData}
 					// 	console.log('camera data: ' + angular.toJson(imageData))
 					// 	console.log($scope.imgURI)
 					// console.log('click')

@@ -6,15 +6,19 @@ imgDataSend ='bsWyr4EqlexpJnXHQdx0VcdeSxAI0hjtf04tFY4/gYlrDECkdKi6kUs4/j wBlOvcN
 
 console.log('imgur')
 function getApi(req,res){
-	console.log(req.body)
+	console.log(req.body.info)
 var options ={
 	type: 'POST',
-	headers:{'Authorization': 'Client-ID '+ClientID},
+	headers:{
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'Authorization': 'Client-ID '+ClientID
+	},
 	url: base_url,
-	data: {'image': req.body}
+	image: req.body.info
 }
 function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
+	console.log('in callback')
+  if (!error ) {
     var info = JSON.parse(body);
     console.log(response,body)
     res.send(response)
