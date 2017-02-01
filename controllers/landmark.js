@@ -14,7 +14,7 @@ unirest.get(base_url+"glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url="+file_im
   res.header("Access-Control-Allow-Origin", "*");
   console.log(result.body)
   face_id=result.body;
-  // getLandmark(face_id)
+  getLandmark(face_id)
 });
 
 }
