@@ -8,13 +8,13 @@ console.log('imgur')
 function getApi(req,res){
 	console.log(req.body)
 var options ={
-	type: 'POST',
+	method: 'POST',
 	headers:{
 		'Content-Type': 'application/x-www-form-urlencoded',
 		'Authorization': 'Client-ID '+ClientID
 	},
 	url: base_url,
-	image: req.body.info
+	form: {image: req.body.info}
 }
 function callback(error, response, body) {
 	console.log('in callback')
