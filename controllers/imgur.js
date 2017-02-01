@@ -6,7 +6,7 @@ imgDataSend ='bsWyr4EqlexpJnXHQdx0VcdeSxAI0hjtf04tFY4/gYlrDECkdKi6kUs4/j wBlOvcN
 
 console.log('imgur')
 function getApi(req,res){
-	console.log(req.body.info)
+	console.log(req.body)
 var options ={
 	type: 'POST',
 	headers:{
