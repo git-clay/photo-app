@@ -6,7 +6,7 @@ request = require('request')
 
 console.log('imgur')
 function getApi(req,res){
-	console.log('req.body:',req.body)
+	console.log('req.body:',req.body,typeof req.body)
 var options ={
 	method: 'POST',
 	headers:{
