@@ -152,6 +152,7 @@ function Cam2($scope, $cordovaCamera, $ionicPlatform, $cordovaDevice, $http,$ion
 					$cordovaCamera.getPicture(options).then(function (imageData) {
 						// console.log('click')
 						rawdata = imageData
+						 angular.toJson(rawdata)
 					// 	console.log('camera data: ' + angular.toJson(imageData))
 					// 	console.log($scope.imgURI)
 					// console.log('click')
@@ -159,7 +160,7 @@ function Cam2($scope, $cordovaCamera, $ionicPlatform, $cordovaDevice, $http,$ion
 							return $http({
 								method: 'POST',
 								url: 'https://shrouded-chamber-14617.herokuapp.com/api/imgur',
-								data: {info:rawdata}
+								data: {stuff:rawdata}
 							})
 						.then(function (res) {
 							$scope.imgURI = res
