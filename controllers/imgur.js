@@ -13,11 +13,11 @@ function getApi(req,res){
 var options ={
 	method: 'POST',
 	headers:{
-		'Content-Type': 'application/x-www-form-urlencoded',
+		'content-type': 'text/plain' ,
 		'Authorization': 'Client-ID '+ClientID
 	},
 	url: base_url,
-	form: {image: imageData}
+	body: imageData
 }
 function callback(error, response, body) {
 	console.log('in callback')
