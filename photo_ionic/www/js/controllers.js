@@ -4,11 +4,12 @@ angular.module('photoApp.controllers', [])
 	.controller('CameraCtrl', CameraCtrl)
 	.controller('DeviceCtrl', DeviceCtrl)
 	.controller('MenuCtrl', MenuCtrl)
-
+	.controller('CanvasCtrl',CanvasCtrl)
 var face_id,
 	attributes,
 	position,
-	landmarks;
+	landmarks,
+	landmarkArr =[]
 
 MenuCtrl.$inject=[]
 function MenuCtrl(){
@@ -59,13 +60,12 @@ function LandmarkCtrl($scope,$http,$ionicPlatform,$location){
 	.then(function(res){
 		// var info = res.data.face[0]
 		// face_id= info.face_id //used for landmark
-		// attributes=info.attribute //(age,gender,glass,pose,race,smiling)
+		attributes=info.attribute //(age,gender,glass,pose,race,smiling)
 		// position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
 		var info = res.data.result[0]
 		face_id = info.face_id
-		landmarks = info.landmark //all
-		var landmarkArr =[]
-		console.log(landmarks) //83 items
+		landmarks = info.landmark //all 83 items
+		console.log(face_id,attributes,landmarks) 
 	})
 }
 	})
@@ -94,20 +94,20 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
  $scope.takePicture = function() {
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            rawdata = imageData
+            rawdata = "data:image/jpeg;base64," + imageData
             console.log('camera data: ' + angular.toJson(imageData))
             console.log($scope.imgURI)
             $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     return $http({
     		method:'POST',
     		url: 'https://shrouded-chamber-14617.herokuapp.com/api/detect',
-    		data: {'infoGoesHere': rawdata}
+    		data: rawdata
     	})
 	.then(function(res){
 		var info = res.data.face[0]
-		var face_id= info.face_id //used for landmark
-		var attributes=info.attribute //(age,gender,glass,pose,race,smiling)
-		var position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+		face_id= info.face_id //used for landmark
+		attributes=info.attribute //(age,gender,glass,pose,race,smiling)
+		position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
 		console.log(face_id,attributes,position)
 	})
         }, function(err) {
@@ -121,7 +121,77 @@ console.log(ionic.Platform.platform()) //checks if web or mobile
 
 
 
-
+var counter = 0;
+CanvasCtrl.inject=['$scope']
+function CanvasCtrl($scope) {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    
+    $scope.data = [
+       
+    ];
+    
+    $scope.addData = function() {
+        var id = 0;
+        if($scope.data.length > 0) {
+            id = $scope.data[$scope.data.length-1].id + 1;
+        }
+        var p = {id: id, x: $scope.x, y: $scope.y, amount: $scope.amount};
+        $scope.data.push(p);
+        $scope.x = '';
+        $scope.y = '';
+        $scope.amount = '';
+        draw($scope.data);
+    };
+    
+    $scope.removePoint = function(point) {
+        console.log(point);
+        for(var i=0; i<$scope.data.length; i++) {
+            if($scope.data[i].id === point.id) {
+                console.log("removing item at position: "+i);
+                $scope.data.splice(i, 1);    
+            }
+        }
+        
+        context.clearRect(0,0,600,400);
+        draw($scope.data);
+        console.log($scope.data);
+    }
+    
+    function draw(data) {
+        for(var i=0; i<data.length; i++) {
+            drawDot(data[i]);
+            if(i > 0) {
+                drawLine(data[i], data[i-1]);
+            }
+        }
+    }
+    
+    function drawDot(data) {
+        context.beginPath();
+        context.arc(data.x, data.y, data.amount, 0, 2*Math.PI, false);
+        context.fillStyle = "#ccddff";
+        context.fill();
+        context.lineWidth = 1;
+        context.strokeStyle = "#666666";
+        context.stroke();  
+    }
+    
+    function drawLine(data1, data2) {
+        context.beginPath();
+        context.moveTo(data1.x, data1.y);
+        context.lineTo(data2.x, data2.y);
+        context.strokeStyle = "black";
+        context.stroke();
+    }
+    
+    // setup
+    canvas.width = 600;
+    canvas.height = 400;
+    context.globalAlpha = 1.0;
+    context.beginPath();
+    draw($scope.data);    
+}
 
 
 

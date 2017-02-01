@@ -16,7 +16,7 @@ unirest.get(base_url+"glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url="+file_im
 
 }
 
-function postApi(req){
+function postApi(req,res){
 	console.log(req.body)
 	res.send(req)
 }

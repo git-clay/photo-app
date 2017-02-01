@@ -65,6 +65,15 @@ $stateProvider
     }
   }
 })
+.state('app.result',{
+  url:'/result',
+  views:{
+    'menuContent':{
+      templateUrl: "../templates/result.html",
+      controller: 'CanvasCtrl'
+    }
+  }
+})  
     $urlRouterProvider.otherwise('/app/camera');
 })
 // .factory('Landmark', function($resource){
