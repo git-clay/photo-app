@@ -65,12 +65,12 @@ function LandmarkCtrl($scope, $http, $ionicPlatform, $location) {
 						url: 'https://shrouded-chamber-14617.herokuapp.com/api/landmark'
 					})
 					.then(function (res) {
-						console.log(res)
-						var info = res.data.face[0]
-						face_id = info.face_id //used for landmark
-						attributes = info.attribute //(age,gender,glass,pose,race,smiling)
-						position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
-						console.log(face_id, attributes, position)
+						console.log(res.data.result[0])
+						// var info = res.data.face[0]
+						// face_id = info.face_id //used for landmark
+						// attributes = info.attribute //(age,gender,glass,pose,race,smiling)
+						// position = info.position //(center,eye_left,eye_right,height,width,mouth_left,mouth_right,nose)
+						// console.log(face_id, attributes, position)
 					})
 			},
 			function (err) {
@@ -151,8 +151,10 @@ function Cam2($scope, $cordovaCamera, $ionicPlatform, $cordovaDevice, $http,$ion
 				$scope.takePicture = function () {
 					$cordovaCamera.getPicture(options).then(function (imageData) {
 						// console.log('click')
+						$scope.imgURI = "data:image/jpeg;base64," + imageData;
+
 						rawdata = imageData
-						 angular.toJson(rawdata)
+						 // angular.toJson(rawdata)
 					// 	console.log('camera data: ' + angular.toJson(imageData))
 					// 	console.log($scope.imgURI)
 					// console.log('click')
