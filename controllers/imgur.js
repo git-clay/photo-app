@@ -10,8 +10,11 @@ function getApi(req,res){
 	// Object.keys(imageData)
 	// JSON.stringify(imageData)
 	var newImageData =Object.keys(imageData)[0]
+	console.log('.info1:',newImageData,typeof newImageData)
+
+	JSON.stringify(newImageData)
 	// var newImageData =JSON.stringify(newImageData)
-	console.log('.info:',newImageData)
+	console.log('.info2:',newImageData,typeof newImageData)
 	// console.log('.stuff:',newImageData)
 	// console.log('newimage:',newImageData, typeof newImageData)
 
