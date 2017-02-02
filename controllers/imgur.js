@@ -22,7 +22,7 @@ var options ={
 		'Authorization': 'Client-ID '+ClientID
 	},
 	url: base_url,
-	body: imageData
+	body: newImageData
 }
 function callback(error, response, body) {
 	console.log('in callback')
