@@ -9,7 +9,7 @@ function getApi(req,res){
 	var imageData = req.body
 	var newImageData =JSON.stringify(imageData)
 	console.log('.info:',Object.keys(imageData))
-	console.log('.stuff:',imageData[0].stuff)
+	console.log('.stuff:',imageData.stuff)
 	console.log('newimage:',newImageData, typeof newImageData)
 
 var options ={
