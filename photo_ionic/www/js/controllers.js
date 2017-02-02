@@ -163,7 +163,7 @@ function Cam2($scope, $cordovaCamera, $ionicPlatform, $cordovaDevice, $http,$ion
 								method: 'POST',
 								url: 'https://shrouded-chamber-14617.herokuapp.com/api/imgur',
 								dataType: 'json',
-								data: {stuff:rawdata}
+								data: rawdata
 							})
 						.then(function (res) {
 							$scope.imgURI = res
