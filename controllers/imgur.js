@@ -7,25 +7,24 @@ request = require('request')
 console.log('imgur')
 function getApi(req,res){
 	var imageData = req.body
-	// Object.keys(imageData)
-	// JSON.stringify(imageData)
 	var newImageData =Object.keys(imageData)[0]
 	console.log('.info1:',newImageData,typeof newImageData)
 
-	JSON.stringify(newImageData)
-	// var newImageData =JSON.stringify(newImageData)
-	console.log('.info2:',newImageData,typeof newImageData)
-	// console.log('.stuff:',newImageData)
-	// console.log('newimage:',newImageData, typeof newImageData)
+
+
+
+// var data = querystring.stringify({
+//   image: new Buffer(img, 'binary').toString('base64')
+// });
+
 
 var options ={
 	method: 'POST',
 	headers:{
-		'content-type': 'text/plain' ,
 		'Authorization': 'Client-ID '+ClientID
 	},
 	url: base_url,
-	body: newImageData
+	image: newImageData
 }
 function callback(error, response, body) {
 	console.log('in callback')
